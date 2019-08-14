@@ -1,0 +1,63 @@
+<header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+
+    <div class="container">
+        <div class="row align-items-center">
+        
+            <div class="col-6 col-xl-2">
+                <h1 class="mb-0 site-logo">
+                    <a href="{% url 'home' %}" class="h2 mb-0">Bioimpedancia<span class="text-primary">.</span></a>
+                </h1>
+            </div>
+
+            <div class="col-12 col-md-10 d-none d-xl-block">
+                <nav class="site-navigation position-relative text-right" role="navigation">
+
+                    <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                        <li><a href="{% url 'home' %}#home-section" class="nav-link">Inicio</a></li>
+                        
+                        {% comment %} <li><a href="#blog-section" class="nav-link">Blog</a></li> {% endcomment %}
+                        
+                        <li><a href="{% url 'home' %}#contact-section" class="nav-link">Contacto</a></li>
+                        {% comment %} <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-facebook"></span></a></li>
+                        <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-twitter"></span></a></li>
+                        <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-linkedin"></span></a></li> {% endcomment %}
+
+                        <li class="has-children">
+                            <a href="{% url 'home' %}#about-section" class="nav-link">Acerca de nosotros</a>
+                            <ul class="dropdown">
+                                {% comment %} <li><a href="{% url 'home' %}#team-section" class="nav-link">Equipo</a></li> {% endcomment %}
+                                <li><a href="{% url 'home' %}#gallery-section" class="nav-link">Galería</a></li>
+                                <li><a href="{% url 'home' %}#testimonials-section" class="nav-link">Testimonios</a></li>
+                                <li><a href="{% url 'home' %}#faq-section" class="nav-link">Preguntas frecuentes</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has-children">
+                            <a href="#">Idioma</a>
+                            <ul class="dropdown">
+                                <li><a href="/en"> Inglés</a></li>
+                                <li><a class="active">Español <i class="icon-check ml-1"></i></a></li>
+                                <li><a href="/fr"> Francés</a></li>
+                                <li><a href="/de"> Deutsch</a></li>
+                                <li><a href="/it"> Italiano</a></li>
+                                <li><a href="/pt"> Portugués</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="{% url 'home' %}" class="nav-link"><b>Acceder</b></a></li>
+
+                        <li><a href="{% url 'home' %}" class="nav-link"><b>Registrarse</b></a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;">
+                <a href="#" class="site-menu-toggle js-menu-toggle float-right">
+                <span class="icon-menu h3"></span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</header>
