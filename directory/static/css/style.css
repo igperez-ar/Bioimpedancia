@@ -548,7 +548,7 @@ body:after {
     background: #fff;
     border-bottom: 1px solid transparent;
     -webkit-box-shadow: 4px 0 20px -5px rgba(0, 0, 0, 0.1);
-    box-shadow: 4px 0 20px -5px rgba(0, 0, 0, 0.1); }
+    box-shadow: 4px 0 10px 5px rgba(0, 0, 0, 0.2); }
     .sticky-wrapper.is-sticky .site-navbar .site-menu-toggle {
       color: #000; }
     .sticky-wrapper.is-sticky .site-navbar .site-logo a {
@@ -2096,3 +2096,12 @@ figure figcaption {
       background-color: rgba(255, 255, 255, 0.5); }
     .single-text .owl-dots .owl-dot.active > span {
       background-color: #fff; }
+
+
+
+/* Bioimp CSS*/
+@media (min-width: 1200px) {
+  .container {
+      max-width: 1250px !important;
+  }
+}
