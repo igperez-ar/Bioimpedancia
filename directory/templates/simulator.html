@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Document</title>
+</head>
+
+<body>
+
+   <!-- <canvas id="myChart"></canvas> -->
+
+   <P>{{impedancia_data.x}}</P>
+   <br>
+   <P>{{impedancia_data.y}}</P>
+   <br>
+   <br>
+   <P>{{impedancia_data_log.x}}</P>
+   <br>
+   <P>{{impedancia_data_log.y}}</P>
+   <br>
+   <br>
+   <P>{{fase_data.x}}</P>
+   <br>
+   <br>
+   <P>{{fase_data.y}}</P>
+   <br>
+   <br>
+   <P>{{cole_cole_data.x}}</P>
+   <br>
+   <br>
+   <P>{{cole_cole_data.y}}</P>
+
+   
+   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+   <script>
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var chart = new Chart(ctx, {
+         // The type of chart we want to create
+         type: 'line',
+
+         // The data for our dataset
+         data: {
+            labels: {{impedancia_data.x}},
+            datasets: [{
+               label: 'My First dataset',
+               backgroundColor: 'rgb(255, 99, 132)',
+               borderColor: 'rgb(255, 99, 132)',
+               data: {{impedancia_data.y}}
+            }]
+         },
+
+         // Configuration options go here
+         options: {}
+      });
+   </script>
+</body>
+
+</html>
