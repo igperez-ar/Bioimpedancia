@@ -25,13 +25,16 @@ class Ad5933():
             return False
 
     def get_mod_impedancia_data(self): 
-        return self.spectrum,np.abs(self.z)            
+        return {
+            'x':self.spectrum,
+            'y':np.abs(self.z)
+        }       
 
     def get_mod_impedancia_log_data(self):
         return {
-            'x':re.sub("\s+", ",", str(np.log10(self.spectrum))),
-            'y':re.sub("\s+", ",", str(np.abs(self.z)))            
-            }
+            'x':np.log10(self.spectrum),
+            'y':np.abs(self.z)         
+        }
    
     def get_fase_data(self):
         return {
