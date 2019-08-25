@@ -5,38 +5,131 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <title>Document</title>
+   <!-- Boostrap 4 -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <title>Simulador</title>
 </head>
 
 <body>
 
-   <!-- <canvas id="myChart"></canvas> -->
+   <div class="card">
+      <!-- oninput hece visible el valor del range -->
+      <form method="GET" action="." id="form" class="card-body"
+         oninput="
+         output_R1.value=parseInt(select_recistencia_1.value)+' Ω'
+         output_R2.value=parseInt(select_recistencia_2.value)+' Ω'
+         output_C.value=parseInt(select_capacitor.value)+' µF'
+         ">
 
-   <P>{{impedancia_data.x}}</P>
-   <br>
-   <P>{{impedancia_data.y}}</P>
-   <br>
-   <br>
-   <P>{{impedancia_data_log.x}}</P>
-   <br>
-   <P>{{impedancia_data_log.y}}</P>
-   <br>
-   <br>
-   <P>{{fase_data.x}}</P>
-   <br>
-   <br>
-   <P>{{fase_data.y}}</P>
-   <br>
-   <br>
-   <P>{{cole_cole_data.x}}</P>
-   <br>
-   <br>
-   <P>{{cole_cole_data.y}}</P>
+         {% csrf_token %}
 
-   
+         <div class="row">
+            <div class="form-group col-sm-4" id="circuitos">
+               <input type="radio" name="circuito" id="capacitor" value="capacitor" checked> Capacitor<br>
+               <input type="radio" name="circuito" id="recistencia" value="recistencia"> Recistencia<br>
+               <input type="radio" name="circuito" id="serie-rc" value="serie-rc"> Serie RC<br>
+               <input type="radio" name="circuito" id="paralelo-rc" value="paralelo-rc"> Paralelo RC<br>
+               <input type="radio" name="circuito" id="serie-paralelo-rc" value="serie-paralelo-rc"> Serie | Paralelo RC<br>
+            </div>
+            <div class="form-group col-sm-6">
+
+               <div class="form-group" id="seccion_capacitor">
+                     <label for="label_R2"><b>Capacitor </b></label>
+                     <input type="range" id="select_capacitor" name="select_capacitor" min="10" max="10000" step="100" value="10">
+                     <output name="output_C" for="output_C">10 µF</output>
+               </div> 
+               <div class="form-group" id="seccion_recistencia_1">
+                  <label for="label_R1"><b>Resistencia N°1 </b></label>
+                  <input type="range" id="select_recistencia_1" name="select_recistencia_1" min="910" max="180000" step="1" value="910">
+                  <output name="output_R1" for="output_R1">910 Ω</output>
+               </div>
+               <div class="form-group" id="seccion_recistencia_2">
+                  <label for="label_R2"><b>Resistencia N°2 </b></label>
+                  <input type="range" id="select_recistencia_2" name="select_recistencia_2" min="910" max="180000" step="1" value="910">
+                  <output name="output_R2" for="output_R2">910 Ω</output>
+               </div>      	
+ 
+            </div>
+            <div class="form-group col-sm-2">
+               <input type="submit" value="Simular" class="btn btn-primary btn-block">
+            </div>
+         </div>
+      </form>
+
+
+   <div class="row">
+      <div class="col-sm-6">
+         <canvas id="impedancia_data"></canvas>
+      </div>
+      <div class="col-sm-6">
+         <canvas id="impedancia_data_log"></canvas>
+      </div>
+   </div>
+
+   <div class="row">
+      <div class="col-sm-6">
+         <canvas id="fase_data"></canvas>
+      </div>
+      <div class="col-sm-6">
+         <canvas id="cole_cole_data"></canvas>
+      </div>
+   </div>
+
+   <!-- Configurar el formulario -->
+   <script>
+
+      if (document.getElementById('capacitor').checked) {
+         document.getElementById('seccion_capacitor').style.display = 'block';
+         document.getElementById('seccion_recistencia_1').style.display = 'none';
+         document.getElementById('seccion_recistencia_2').style.display = 'none';
+         console.log('capacitor')
+      }
+
+      document.getElementById('circuitos')
+         .addEventListener('click', function(e) {
+
+         if (e.target.value === 'capacitor') {
+            document.getElementById('seccion_capacitor').style.display = 'block';
+            document.getElementById('seccion_recistencia_1').style.display = 'none';
+            document.getElementById('seccion_recistencia_2').style.display = 'none';
+            console.log('Capacitor')
+         }
+
+         if (e.target.value === 'recistencia') {
+            document.getElementById('seccion_recistencia_1').style.display = 'block';
+            document.getElementById('seccion_capacitor').style.display = 'none';
+            document.getElementById('seccion_recistencia_2').style.display = 'none';
+            console.log('Recistencia')
+         }
+
+         if (e.target.value === 'serie-rc') {
+            document.getElementById('seccion_capacitor').style.display = 'block';
+            document.getElementById('seccion_recistencia_1').style.display = 'block';
+            document.getElementById('seccion_recistencia_2').style.display = 'none';
+            console.log('Recistencia')
+         }
+
+         if (e.target.value === 'paralelo-rc') {
+            document.getElementById('seccion_capacitor').style.display = 'block';
+            document.getElementById('seccion_recistencia_1').style.display = 'block';
+            document.getElementById('seccion_recistencia_2').style.display = 'none';
+            console.log('Recistencia')
+         }
+
+         if (e.target.value === 'serie-paralelo-rc') {
+            document.getElementById('seccion_capacitor').style.display = 'block';
+            document.getElementById('seccion_recistencia_1').style.display = 'block';
+            document.getElementById('seccion_recistencia_2').style.display = 'block';
+            console.log('Recistencia')
+         }
+      })
+   </script>
+
    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
    <script>
-      var ctx = document.getElementById('myChart').getContext('2d');
+      // IMPEDANCIA
+      var ctx = document.getElementById('impedancia_data').getContext('2d');
       var chart = new Chart(ctx, {
          // The type of chart we want to create
          type: 'line',
@@ -45,7 +138,7 @@
          data: {
             labels: {{impedancia_data.x}},
             datasets: [{
-               label: 'My First dataset',
+               label: 'IMPEDANCE',
                backgroundColor: 'rgb(255, 99, 132)',
                borderColor: 'rgb(255, 99, 132)',
                data: {{impedancia_data.y}}
@@ -55,7 +148,81 @@
          // Configuration options go here
          options: {}
       });
+
+// IMPEDANCIA LOG
+      var ctx = document.getElementById('impedancia_data_log').getContext('2d');
+      var chart = new Chart(ctx, {
+         // The type of chart we want to create
+         type: 'line',
+
+         // The data for our dataset
+         data: {
+            labels: {{impedancia_data_log.x}},
+            datasets: [{
+               label: 'IMPEDANCE LOG',
+               backgroundColor: 'rgb(255, 99, 132)',
+               borderColor: 'rgb(255, 99, 132)',
+               data: {{impedancia_data_log.y}}
+            }]
+         },
+
+         // Configuration options go here
+         options: {}
+      });
+
+      // FASE
+      var ctx = document.getElementById('fase_data').getContext('2d');
+      var chart = new Chart(ctx, {
+         // The type of chart we want to create
+         type: 'line',
+
+         // The data for our dataset
+         data: {
+            labels: {{fase_data.x}},
+            datasets: [{
+               label: 'FASE',
+               backgroundColor: 'rgb(255, 99, 132)',
+               borderColor: 'rgb(255, 99, 132)',
+               data: {{fase_data.y}}
+            }]
+         },
+
+         // Configuration options go here
+         options: {}
+      });
+
+
+      // COLE COLE
+      var ctx = document.getElementById('cole_cole_data').getContext('2d');
+      var chart = new Chart(ctx, {
+         // The type of chart we want to create
+         type: 'line',
+
+         // The data for our dataset
+         data: {
+            labels: {{cole_cole_data.x}},
+            datasets: [{
+               label: 'COLE COLE',
+               backgroundColor: 'rgb(255, 99, 132)',
+               borderColor: 'rgb(255, 99, 132)',
+               data: {{cole_cole_data.y}}
+            }]
+         },
+
+         // Configuration options go here
+         options: {}
+      });
    </script>
+   
 </body>
 
+<!-- No auto indentar xq se rommpe el javascript
+los tag's de django estan insertados en atributos de manera key:{{value}}
+y el auto intado los deja 
+key: {
+   {
+      value
+   }
+}
+-->
 </html>
