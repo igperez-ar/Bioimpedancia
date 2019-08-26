@@ -173,13 +173,13 @@
     opacity: 1;
 }
 
-/* .file-preview {
-    border-radius: 5px;
-    border: 1px solid #ddd;
+.file-preview {
+    /* border-radius: 5px;
+    border: 1px solid #ddd; */
     padding: 8px;
     width: 100%;
     margin-bottom: 5px;
-} */
+}
 
 .file-preview .btn-xs {
     padding: 1px 5px;
@@ -204,7 +204,7 @@
 }
 
 .krajee-default.file-preview-frame {
-    margin: 8px;
+    margin: 5px;
     border: 1px solid rgba(0,0,0,0.2);
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
     padding: 6px;
@@ -406,7 +406,7 @@
     text-align: center;
     vertical-align: middle;
     margin: 12px 15px 12px 12px;
-    padding: 5px;
+    padding: 8px;
 }
 
 .file-drop-zone.clickable:hover {

@@ -1394,7 +1394,7 @@
                 '    <div class="kv-fileinput-error"></div>\n' +
                 '    </div>\n' +
                 '</div>';
-            tClose = "";
+            tClose = $h.closeButton('fileinput-remove');
             tFileIcon = '<i class="glyphicon glyphicon-file"></i>';
             // noinspection HtmlUnknownAttribute
             tCaption = '<div class="file-caption form-control {class}" tabindex="500">\n' +

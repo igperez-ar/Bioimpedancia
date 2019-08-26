@@ -8,6 +8,8 @@ pylint = "==2.3.1"
 
 [packages]
 django = "==2.2"
+fpdf = "*"
+zipfile = "*"
 
 [requires]
 python_version = "3.7"
