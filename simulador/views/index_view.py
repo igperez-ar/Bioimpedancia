@@ -18,29 +18,44 @@ class IndexView(View):
       # Value option group
       circuitoSelec = request.GET.get('circuito')
 
+      # Value circuito
+      if (circuitoSelec != None):
+         # Carga los valores selecionados
+         print(True)
+         valueCapacitor = int(request.GET.get('select_capacitor'))
+         valueResistencia_1 = int(request.GET.get('select_recistencia_1'))
+         valueResistencia_2 = int(request.GET.get('select_recistencia_2'))
+      else:
+         # Inicializa el simulador default
+         print(False)
+         valueCapacitor = 10
+         valueResistencia_1 = 910
+         valueResistencia_2 = 910
+         circuitoSelec = 'capacitor'
+
       # Switch de circuito
       # Construye el circuito con los valores
-      def switch(circuitoSelec):
+      def switch(circuitoSelec ,valueCapacitor, valueResistencia_1, valueResistencia_2):
          sw = {
-            'capacitor': Capacitor(int(request.GET.get('select_capacitor'))),
-            'recistencia': Resistencia(int(request.GET.get('select_recistencia_1'))),
+            'capacitor': Capacitor(valueCapacitor),
+            'recistencia': Resistencia(valueResistencia_1),
             'serie-rc': RCSerie(
-               int(request.GET.get('select_recistencia_1')),
-               int(request.GET.get('select_capacitor'))
+               valueResistencia_1,
+               valueCapacitor
                ),
             'paralelo-rc': RCParalelo(
-               int(request.GET.get('select_recistencia_1')),
-               int(request.GET.get('select_capacitor'))
+               valueResistencia_1,
+               valueCapacitor
                ),
             'serie-paralelo-rc': RCSerieParalelo(
-               int(request.GET.get('select_recistencia_1')),
-               int(request.GET.get('select_capacitor')),
-               int(request.GET.get('select_recistencia_2'))
+               valueResistencia_1,
+               valueCapacitor,
+               valueResistencia_2
                ),
          }
          return sw.get(circuitoSelec)
 
-      circuito = switch(str(circuitoSelec))
+      circuito = switch(circuitoSelec, valueCapacitor, valueResistencia_1, valueResistencia_2)
 
       placa = Ad5933(circuito)
       placa.simula(100,100,100)
