@@ -262,11 +262,6 @@ jQuery(document).ready(function($) {
 	};
 	siteDatePicker();
 
-	var siteSticky = function() {
-		$(".js-sticky-header").sticky({topSpacing:0});
-	};
-	siteSticky();
-
 	// navigation
   var OnePageNavigation = function() {
     var navToggler = $('.site-menu-toggle');
@@ -285,7 +280,7 @@ jQuery(document).ready(function($) {
   };
   OnePageNavigation();
 
-  var siteScroll = function() {
+  /* var siteScroll = function() {
 
   	
 
@@ -302,7 +297,7 @@ jQuery(document).ready(function($) {
   	}) 
 
   };
-  siteScroll();
+  siteScroll(); */
 
 
   var siteIstotope = function() {

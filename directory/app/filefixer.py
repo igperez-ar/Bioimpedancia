@@ -1,16 +1,13 @@
 import re, os, csv, zipfile
 from django.conf import settings 
+from django.core.files.storage import Storage, default_storage
 from fpdf import FPDF, HTMLMixin
 
 def repair_csv(files):
     p = re.compile(r'(\D),(\D)')
-    path_zip = os.path.join(settings.MEDIA_ROOT, "tmp/Bioimpedancia.zip")
-
+    path = Storage.get_available_name(default_storage, 'Bioimp.zip')
+    path_zip = os.path.join(settings.MEDIA_ROOT, path)
     zf = zipfile.ZipFile(path_zip, "w")
-    
-    """ if not os.path.exists(path_zip):
-        zf = zipfile.ZipFile(path_zip, "w")
-        zf.close() """
     
     for f in files:
         with open(f, "r+") as openFile:
@@ -20,7 +17,7 @@ def repair_csv(files):
             for line in openFile:
                 if len(line.strip()) != 0 :
                     line = line.strip()
-                    column = p.sub(r'\1;\2', line).split(";")
+                    column = re.split(p, line)
                     new_content = f"{new_content} \n{column[0]} ;{column[1]} ;{column[2]}"
 
             openFile.seek(0)
@@ -32,30 +29,6 @@ def repair_csv(files):
     
     zf.close()
     return os.path.basename(zf.filename)
-
-
-
-    """for f in files:
-        with open(f, "r+") as openFile:
-            content = openFile.read()
-            newcontent = p.sub(r'\1;\2', content)
-            
-            iterFile = open(csv_in)
-            next(iterFile)
-
-            for line in iterFile:
-                if len(line.strip()) != 0 :
-                    line = line.strip()
-                    column = line.split(split)
-                    
-                    frecuency = column[0]
-                    impedance = column[1]
-                    phase     = column[2] 
-
-            newFile = open(f"{root.Destination}/{os.path.basename(openFile.name).split('.')[0]} - Reparado.csv", "w+")
-            newFile.write(newcontent)
-            newFile.close()
-            openFile.close() """
 
 
 def toPDF(file_in):
@@ -149,3 +122,31 @@ def toPDF(file_in):
     pdf.set_creator(creator)
     pdf.write_html(html)
     pdf.output(pdf_out)
+
+
+""" def repair_csv(files):
+    p = re.compile(r'(\D),(\D)')
+    path = Storage.get_available_name(default_storage, 'Bioimp.zip')
+    path_zip = os.path.join(settings.MEDIA_ROOT, path)
+    zf = zipfile.ZipFile(path_zip, "w")
+    
+    for f in files:
+        with open(f, "r+") as openFile:
+            new_content = "Frecuency ;Impedance ;Phase"
+            next(openFile)
+            
+            for line in openFile:
+                if len(line.strip()) != 0 :
+                    line = line.strip()
+                    column = p.sub(r'\1;\2', line).split(";")
+                    new_content = f"{new_content} \n{column[0]} ;{column[1]} ;{column[2]}"
+
+            openFile.seek(0)
+            openFile.write(new_content)
+            openFile.close()
+
+        zf.write(f, os.path.basename(f))
+        os.remove(f)
+    
+    zf.close()
+    return os.path.basename(zf.filename) """

@@ -3,36 +3,34 @@
 <footer class="site-footer">
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
-                <div class="row">
-                    <div class="col-md-5">
-                        {% comment %} <h2 class="footer-heading mb-4">Acerca de nosotros</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Neque facere laudantium magnam voluptatum autem. 
-                        Amet aliquid nesciunt veritatis aliquam.</p> {% endcomment %}
-                        <img class="img-fluid" src="{% static 'img/isologotipo.png' %}">
-                        <img class="img-fluid mt-5" src="{% static 'img/idei_big.png' %}">
-                    </div>
-                    <div class="col-md-3 ml-auto">
-                        <h2 class="footer-heading mb-4">Enlaces</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#about-section" class="smoothscroll">Términos</a></li>
-                            <li><a href="#about-section" class="smoothscroll">Política</a></li>
-                            <li><a href="#about-section" class="smoothscroll">Acerca de nosotros</a></li>
-                            <li><a href="#testimonials-section" class="smoothscroll">Testimonios</a></li>
-                            <li><a href="#contact-section" class="smoothscroll">Contáctanos</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3 footer-social">
-                        <h2 class="footer-heading mb-4">Síguenos</h2>
-                        <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-                        <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-                        <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-                        <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-                    </div>
-                </div>
+            <div class="col-md-4">
+                {% comment %} <h2 class="footer-heading mb-4">Acerca de nosotros</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Neque facere laudantium magnam voluptatum autem. 
+                Amet aliquid nesciunt veritatis aliquam.</p> {% endcomment %}
+                <img class="img-fluid" src="{% static 'img/isologotipo.png' %}">
+                <img class="img-fluid mt-5" src="{% static 'img/idei_big.png' %}">
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 ml-auto">
+                <h2 class="footer-heading mb-4">Enlaces</h2>
+                <ul class="list-unstyled">
+                    <li><a href="#about-section" class="smoothscroll">Términos</a></li>
+                    <li><a href="#about-section" class="smoothscroll">Política</a></li>
+                    <li><a href="#about-section" class="smoothscroll">Acerca de nosotros</a></li>
+                    <li><a href="#testimonials-section" class="smoothscroll">Testimonios</a></li>
+                    <li><a href="#contact-section" class="smoothscroll">Contáctanos</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 footer-social">
+                <h2 class="footer-heading mb-4">Síguenos</h2>
+                <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+                <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+                <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-6">
                 <h2 class="footer-heading mb-4">Suscribirse al boletín informativo</h2>
                 <form action="#" method="post" class="footer-subscribe">
                     <div class="input-group mb-3">
@@ -44,7 +42,7 @@
                 </form>
             </div>
         </div>
-        <div class="row pt-5 mt-5 text-center">
+        <div class="row pt-5 mt-3 text-center">
             <div class="col-md-12">
                 <div class="border-top pt-5">
                     <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> Todos los derechos reservados.</p>

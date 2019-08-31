@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block cspage %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
+    {% comment %} <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous"> {% endcomment %}
     <link href="{% static 'bootstrap-fileinput/css/fileinput.css' %}" media="all" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
     {% comment %} <link href="{% static 'bootstrap-fileinput/themes/explorer-fas/theme.css' %}" media="all" rel="stylesheet" type="text/css"/> {% endcomment %}
@@ -37,6 +37,7 @@
     </div>
 
 
+
     {% include 'footer.html' %}
 {% endblock content %}
 
@@ -64,6 +65,9 @@
                 showClose: false,
                 showRemove: false,
                 browseClass: "btn btn-primary btn-md",
+                fileActionSettings: {
+                    showUpload: false,
+                },
 
                 allowedFileExtensions: ['csv'],
                 uploadUrl: url_mask,
@@ -71,7 +75,7 @@
                 uploadExtraData: {
                     uploadToken: '{{ csrf_token }}'
                 },
-                maxFileCount: 20,
+                maxFileCount: 10,
                 maxFileSize: 1000,
                 theme: 'fas',
                 preferIconicPreview: true,
@@ -92,15 +96,22 @@
             
             link.appendChild(text);
             link.setAttribute("id", "zipDownload");
-            link.setAttribute("href", "/media/tmp/" + data.response.urlDownload);
+            link.setAttribute("href", "/media/" + data.response.urlDownload);
             link.setAttribute("download", "Bioimpedancia - Archivos reparados");
             link.setAttribute("class", "mt-4 btn btn-default btn-lg btn-primary");
             link.setAttribute("style", "width:273pt;");
 
             document.getElementById("centerPage").appendChild(link);
 
-        }).on('filebatchuploadcomplete', function(event) {
+            console.log(data.response.graphData);
+
+        }).on('filebatchuploadcomplete', function(event, data) {
             $("#data_file").fileinput('disable');
+            var uploadBtn = document.getElementsByClassName('fileinput-upload-button');
+            var browseBtn = document.getElementsByClassName('btn-file');
+
+            uploadBtn[0].hidden = true;
+            browseBtn[0].hidden = true;
         });
     </script>
 
