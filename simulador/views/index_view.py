@@ -23,8 +23,8 @@ class IndexView(View):
          # Carga los valores selecionados
          print(True)
          valueCapacitor = int(request.GET.get('select_capacitor'))
-         valueResistencia_1 = int(request.GET.get('select_recistencia_1'))
-         valueResistencia_2 = int(request.GET.get('select_recistencia_2'))
+         valueResistencia_1 = int(request.GET.get('select_resistencia_1'))
+         valueResistencia_2 = int(request.GET.get('select_resistencia_2'))
       else:
          # Inicializa el simulador default
          print(False)
@@ -38,7 +38,7 @@ class IndexView(View):
       def switch(circuitoSelec ,valueCapacitor, valueResistencia_1, valueResistencia_2):
          sw = {
             'capacitor': Capacitor(valueCapacitor),
-            'recistencia': Resistencia(valueResistencia_1),
+            'resistencia': Resistencia(valueResistencia_1),
             'serie-rc': RCSerie(
                valueResistencia_1,
                valueCapacitor

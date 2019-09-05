@@ -5,7 +5,7 @@ from django.http import QueryDict, JsonResponse
 from django.core.files.storage import Storage, default_storage
 from django.conf import settings
 import os, re, pandas as pd, io, zipfile
-
+import numpy as np
 
 class FileFixerView(View):
     template_name = 'filefixer.html'
@@ -28,40 +28,55 @@ class FileFixerView(View):
 
         for f in files:
             broken_file = p.sub(r'\1;\2', f.read().decode('utf-8'))
-            repaired_file = pd.read_csv(io.StringIO(broken_file), sep=';')
-            repaired_file = repaired_file.iloc[:, [0, 1, 2]]
+            data = pd.read_csv(io.StringIO(broken_file), sep=';')
+            repaired_file = data.iloc[:, [0, 1, 2]]
             
             path = Storage.get_available_name(default_storage, os.path.join('tmp', f.name))
             file_name = os.path.join(settings.MEDIA_ROOT, path)            
-            repaired_file.to_csv(file_name, sep=';', index=False) 
+            repaired_file.to_csv(file_name, sep=';', index=False)
+
+            spectrum = data.iloc[:, [0]]
+            z = data.iloc[:, [1]]
+
+            impedancia_data = {
+                'x': spectrum,
+                'y': z
+            }
             
-            saved_files.append({"name": f.name, 
-                                "data": repaired_file.values.tolist()
+            impedancia_data_log = {
+                'x': np.log10(spectrum),
+                'y': z
+            }
+
+            fase_data = {
+                'x': spectrum,
+                'y': data.iloc[:, [2]]
+            }
+
+            cole_cole_data = {
+                'x': data.iloc[:, [3]],
+                'y': data.iloc[:, [4]]
+            }
+
+            graphData = {
+                'impedancia_data' : impedancia_data,
+                'impedancia_data_log': impedancia_data_log,
+                'fase_data': fase_data,
+                'cole_cole_data': cole_cole_data,
+            }
+            
+            graphs.append({
+                    "name": f.name,
+                    "data": graphData
             })
+
+            print(graphs)
 
             zf.write(file_name, os.path.basename(file_name))
             os.remove(file_name)
 
         zf.close()
-    
-        """tmp_file = os.path.join(settings.MEDIA_ROOT, path)
-        saved_files.append(tmp_file)
 
-
-        ziped_files = filefixer.repair_csv(saved_files)  """ 
-
-        """ qdict = QueryDict('', mutable=True)
-        qdict.update(request.FILES)
-        files = qdict.getlist("data_file[]")
-        saved_files = []
-
-        for f in files:
-            path = default_storage.save(f'tmp/{f}', ContentFile(f.read()))
-            tmp_file = os.path.join(settings.MEDIA_ROOT, path)
-            saved_files.append(tmp_file)
-
-
-        ziped_files = filefixer.repair_csv(saved_files) """
 
         responseData = { 
             'initialPreview': [],
@@ -69,7 +84,7 @@ class FileFixerView(View):
             'initialPreviewThumbTags': [],
             'append': True,
             'urlDownload': os.path.basename(zf.filename),
-            'graphData': saved_files,
+            'graphs': graphs,
         }
 
         return JsonResponse(responseData)

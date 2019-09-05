@@ -33,7 +33,7 @@ class Ad5933():
     def get_mod_impedancia_log_data(self):
         return {
             'x':np.log10(self.spectrum),
-            'y':np.abs(self.z)         
+            'y':np.abs(self.z)
         }
    
     def get_fase_data(self):
