@@ -6,6 +6,5 @@ from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path('',                    HomeView.as_view(),                   name="home"),
-    path('simulador/',          HomeView.as_view(),                   name="simulator"),
     path('reparador-archivos/', csrf_exempt(FileFixerView.as_view()), name="filefixer"),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

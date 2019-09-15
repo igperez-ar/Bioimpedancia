@@ -247,7 +247,7 @@
     height: 2px;
 }
 
-samp {
+div.file-thumbnail-footer > div.file-footer-caption > div.file-size-info > samp {
     margin: 0 0 0 150px;
 }
 
@@ -331,7 +331,7 @@ div.file-actions > div > .btn.btn-sm.btn-kv.btn-default.btn-outline-secondary {
     text-align: center;
     /* padding-top: 4px; */
     font-size: 15px;
-    color: #DDD;
+    /* color: #DDD; */
     /* margin-bottom: 30px; */
 }
 
@@ -607,4 +607,11 @@ div.file-actions > div > .btn.btn-sm.btn-kv.btn-default.btn-outline-secondary {
 
 .file-preview-initial.sortable-chosen {
     background-color: #d9edf7;
+}
+
+.modal-header > div > button.btn.btn-sm.btn-kv.btn-default.btn-outline-secondary {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
 }

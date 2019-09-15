@@ -23,14 +23,22 @@
                         <li class="social"><a href="#contact-section" class="nav-link"><span class="icon-linkedin"></span></a></li> {% endcomment %}
 
                         <li class="has-children">
+                            <a class="nav-link"><b>Herramientas</b></a>
+                            <ul class="dropdown">
+                                <li><a href="{% url 'filefixer' %}" class="nav-link">Reparador de Archivos</a></li>
+                                <li><a href="{% url 'simulator' %}" class="nav-link">Simulador</a></li>
+                            </ul>
+                        </li>
+
+                        {% comment %} <li class="has-children">
                             <a href="{% url 'home' %}#about-section" class="nav-link">Acerca de nosotros</a>
                             <ul class="dropdown">
-                                {% comment %} <li><a href="{% url 'home' %}#team-section" class="nav-link">Equipo</a></li> {% endcomment %}
+                                <li><a href="{% url 'home' %}#team-section" class="nav-link">Equipo</a></li>
                                 <li><a href="{% url 'home' %}#gallery-section" class="nav-link">Galería</a></li>
                                 <li><a href="{% url 'home' %}#testimonials-section" class="nav-link">Testimonios</a></li>
                                 <li><a href="{% url 'home' %}#faq-section" class="nav-link">Preguntas frecuentes</a></li>
                             </ul>
-                        </li>
+                        </li> {% endcomment %}
 
                         {% comment %} <li class="has-children">
                             <a href="#">Idioma</a>

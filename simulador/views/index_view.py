@@ -1,6 +1,7 @@
 import re
 from django.shortcuts import render
 from django.views.generic import View
+from django.http import JsonResponse
 from simulador.services import (
    Ad5933,
    Circuito,
@@ -21,13 +22,11 @@ class IndexView(View):
       # Value circuito
       if (circuitoSelec != None):
          # Carga los valores selecionados
-         print(True)
-         valueCapacitor = int(request.GET.get('select_capacitor'))
+         valueCapacitor = float(request.GET.get('select_capacitor'))
          valueResistencia_1 = int(request.GET.get('select_recistencia_1'))
          valueResistencia_2 = int(request.GET.get('select_recistencia_2'))
       else:
          # Inicializa el simulador default
-         print(False)
          valueCapacitor = 10
          valueResistencia_1 = 910
          valueResistencia_2 = 910
@@ -72,6 +71,7 @@ class IndexView(View):
          'fase_data': fase_data,
          'cole_cole_data': cole_cole_data,
       })
+
 
 def formatoGrafico(elemt):
    # Reemplazar espaciosen blanco por coma

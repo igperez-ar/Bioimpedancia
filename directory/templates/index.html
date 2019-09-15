@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load i18n %}
 
 {% block bodyattrib %}
 data-spy="scroll" data-target=".site-navbar-target" data-offset="300"
@@ -52,32 +51,45 @@ data-spy="scroll" data-target=".site-navbar-target" data-offset="300"
     </div>  
 
 
-    <div class="site-section cta-big-image" id="about-section">
-      <div class="container">
-        <div class="row mb-5 justify-content-center">
-          <div class="col-md-8 text-center">
-            <h2 class="section-title mb-3" data-aos="fade-up" data-aos-delay="">{% trans "Acerca de nosotros" %}</h2>
-            <p class="lead" data-aos="fade-up" data-aos-delay="100">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus minima neque tempora reiciendis.</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
-            {% comment %} <figure class="circle-bg"> {% endcomment %}
-            <img src="{% static 'img/img_2.jpg' %}" alt="Free Website Template by Free-Template.co" class="img-fluid">
-            </figure>
-          </div>
-          <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
+    <div class="site-section bg-light" id="about-section">
+        <div class="container">
+            <div class="row mb-5 justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2 class="section-title mb-3" data-aos="fade-up" data-aos-delay="">Acerca de nosotros</h2>
+                    {% comment %} <p class="lead" data-aos="fade-up" data-aos-delay="100">
+                    </p> {% endcomment %}
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                {% comment %} <div class="col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
+                    <figure class="circle-bg">
+                    <img src="{% static 'img/img_2.jpg' %}" alt="Free Website Template by Free-Template.co" class="img-fluid">
+                    </figure>
+                </div> {% endcomment %}
+                <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="100">
+                    {% comment %} <h3 class="text-black mb-4">We Solve Your Financial Problem</h3> {% endcomment %}
+                    <p>
+                    Somos un grupo de investigación dependiente del Instituto de Desarrollo Económico e Innovación (IDEI) 
+                    de la Universidad Nacional de Tierra del Fuego, Antártida e Islas del Atlántico Sur. Se dedica a la 
+                    investigación científica de tecnologías aplicadas a mediciones de las propiedades eléctricas de sistemas 
+                    biológicos como seres humanos, frutas, verduras, carnes, entre otros; para aplicaciones en diagnósticos 
+                    médicos, agricultura y caracterización de la calidad de alimentos. Empezando a innovar en el cultivo de 
+                    peces y crustáceos.
+                    </p>
+                </div>
+                
+                <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <p>
+                    El referente del grupo es el Ingeniero Biomédico Antonio H. Dell’Osa (IDEI/UNTDF-CONICET) que posee un 
+                    soporte intrauniversitario desde la carrera de Lic. en Sistemas por docentes y estudiantes de grado. 
+                    A su vez, con una asistencia extrauniversitaria de parte de profesionales de la Universidad de la 
+                    República (Montevideo, Uruguay), Universitá degli studi di Cagliari (Italia), Universidad de Tucumán 
+                    (Argentina), Universidad de La Plata (Buenos Aires, Argentina) y Universidad de Buenos Aires (Argentina).
+                    </p>
+                </div>
+            </div>
             
-            <h3 class="text-black mb-4">We Solve Your Financial Problem</h3>
-
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-            
-          </div>
-        </div>    
-        
-      </div>  
+        </div>  
     </div>
 
     
@@ -259,7 +271,7 @@ data-spy="scroll" data-target=".site-navbar-target" data-offset="300"
 
 
 
-    <section class="site-section">
+    {% comment %} <section class="site-section">
       <div class="container">
 
         <div class="row mb-5 justify-content-center">
@@ -295,7 +307,7 @@ data-spy="scroll" data-target=".site-navbar-target" data-offset="300"
                     Cumque nisi, deserunt necessitatibus odio magnam nihil illum
                     neque voluptas?
                 </p>
-                {% comment %} <p><a href="#" class="btn btn-primary mr-2 mb-2">Leer más</a></p> {% endcomment %}
+                <p><a href="#" class="btn btn-primary mr-2 mb-2">Leer más</a></p>
               </div>
               <div>
                 <h2 class="section-title mb-3">02. Get an approval</h2>
@@ -303,7 +315,7 @@ data-spy="scroll" data-target=".site-navbar-target" data-offset="300"
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                     Cumque nisi, deserunt necessitatibus odio magnam nihil illum neque voluptas?
                 </p>
-                {% comment %} <p><a href="#" class="btn btn-primary mr-2 mb-2">Leer más</a></p> {% endcomment %}
+                <p><a href="#" class="btn btn-primary mr-2 mb-2">Leer más</a></p>
               </div>
               <div>
                 <h2 class="section-title mb-3">03. Card delivery</h2>
@@ -311,7 +323,7 @@ data-spy="scroll" data-target=".site-navbar-target" data-offset="300"
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                     Inventore sapiente labore eius ullam? Iusto?
                 </p>
-                {% comment %} <p><a href="#" class="btn btn-primary mr-2 mb-2">Leer más</a></p> {% endcomment %}
+                <p><a href="#" class="btn btn-primary mr-2 mb-2">Leer más</a></p>
               </div>
               
             </div>
@@ -319,12 +331,11 @@ data-spy="scroll" data-target=".site-navbar-target" data-offset="300"
           </div>
         </div>
       </div>
-    </section>
+    </section> {% endcomment %}
 
     
 
-    <section class="site-section bg-light" id="gallery-section" data-aos="fade">
-      
+    <section class="site-section" id="gallery-section" data-aos="fade">
       <div class="container">
 
         <div class="row mb-3">
@@ -428,14 +439,14 @@ data-spy="scroll" data-target=".site-navbar-target" data-offset="300"
 
 
 
-    <section class="site-section" id="faq-section">
+    {% comment %} <section class="site-section" id="faq-section">
       
         
-        {% comment %} <div class="row site-section" id="faq-section">
+        <div class="row site-section" id="faq-section">
           <div class="col-12 text-center" data-aos="fade">
             <h2 class="section-title">Preguntas frecuentes</h2>
           </div>
-        </div> {% endcomment %}
+        </div>
       
       <div class="container">
         <div class="row mb-5">
@@ -447,14 +458,14 @@ data-spy="scroll" data-target=".site-navbar-target" data-offset="300"
           <div class="col-lg-6">
             
             <div class="mb-5" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="text-black h4 mb-4">¿Qué es la 'Bioimpedancia'?</h3>
+            <h3 class="text-black h4 mb-4">¿Qué es la Bioimpedancia?</h3>
             <p>Es el fenómeno mediante el cual el tejido biológico se opone al pasaje de la corriente eléctrica.
             Cada tejido tiene una característica de impedancia diferente, lo que permite distinguir grasa de masa magra, o 
             aire del agua o del hueso.</p>
             </div>
             
             <div class="mb-5" data-aos="fade-up" data-aos-delay="100">
-              <h3 class="text-black h4 mb-4">Lorem ipsum?</h3>
+              <h3 class="text-black h4 mb-4">¿Cuales son las posibles aplicaciones de una medición de Bioimpedancia?</h3>
               <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
             </div>
 
@@ -492,7 +503,7 @@ data-spy="scroll" data-target=".site-navbar-target" data-offset="300"
           </div>
         </div>
       </div>
-    </section>
+    </section> {% endcomment %}
 
 
 

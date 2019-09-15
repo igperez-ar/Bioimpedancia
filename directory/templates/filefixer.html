@@ -2,37 +2,77 @@
 {% load static %}
 
 {% block cspage %}
-    {% comment %} <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous"> {% endcomment %}
     <link href="{% static 'bootstrap-fileinput/css/fileinput.css' %}" media="all" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" crossorigin="anonymous">
-    {% comment %} <link href="{% static 'bootstrap-fileinput/themes/explorer-fas/theme.css' %}" media="all" rel="stylesheet" type="text/css"/> {% endcomment %}
 {% endblock cspage %}
 
 {% block content %}
 
     {% include 'navbar.html' %}
 
-    <div class="site-blocks-cover overlay" data-aos="fade">
+    <div class="site-section bg-light" data-aos="fade">
 
-      <div class="container">
-        <div class="row align-items-center justify-content-center">
+        <div class="container">
+            <div class="row align-items-center justify-content-center" style="min-height: -webkit-fill-available;">
 
-          <div id="centerPage" class="col-md-10 mt-lg-5 text-center">
-                <h1 data-aos="fade-up">Reparar ARCHIVO</h1>
-                
-                <p class="mb-5 desc"  data-aos="fade-up" data-aos-delay="100">
-                    Reparar <b>CSV</b> definiendo el o los formatos de descarga.
-                    <br>Repara tu archivo online.</p>
+                <div id="centerPage" class="col-md-10 mt-lg-5 text-center">
+                        <h1 data-aos="fade-up">Reparador de Archivos</h1>
+                        
+                        <p class="mb-5 desc"  data-aos="fade-up" data-aos-delay="100">
+                            Seleccione a continuación el/los archivos en formato <b>CSV</b> que desea reparar.
+                        </p>
 
-                <div data-aos="fade-up" data-aos-delay="100">
-                    <form method="POST" enctype="multipart/form-data">
-                        <input id="data_file" name="data_file[]" type="file" accept=".csv" multiple="multiple">
-                    </form>
+                        <div data-aos="fade-up" data-aos-delay="100">
+                            <form method="POST" enctype="multipart/form-data">
+                                <input id="data_file" name="data_file[]" type="file" accept=".csv" multiple="multiple">
+                            </form>
+                        </div>
                 </div>
-          </div>
-            
+                
+            </div>
+
+            {% comment %} 
+            <div class="row">
+                <div class="col-lg-6 col-sm-12">
+                    <div class="card bg-light mb-3">
+                        <div class="card-header text-center">Impedance</div>
+                        <div class="card-body">
+                            <div id="impedancia_data"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <div class="card bg-light mb-3">
+                        <div class="card-header text-center">Impedance Log</div>
+                        <div class="card-body">
+                            <div id="impedancia_data_log"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-6 col-sm-12">
+                    <div class="card bg-light mb-3">
+                        <div class="card-header text-center">Phase</div>
+                        <div class="card-body">
+                            <div id="fase_data"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <div class="card bg-light mb-3">
+                        <div class="card-header text-center">Cole Cole</div>
+                        <div class="card-body">
+                            <div id="cole_cole_data"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endcomment %}
+
         </div>
-      </div>
 
     </div>
 
@@ -89,21 +129,21 @@
                 }
             }) 
         }).on('filebatchuploadsuccess', function(event, data) {
-            var link = document.createElement("a");
+            const center_page = document.getElementById("centerPage");
+            
+            var dwnld_btn = document.createElement("a");
             var text = document.createElement("span");
 
             text.textContent = "Descargar";
             
-            link.appendChild(text);
-            link.setAttribute("id", "zipDownload");
-            link.setAttribute("href", "/media/" + data.response.urlDownload);
-            link.setAttribute("download", "Bioimpedancia - Archivos reparados");
-            link.setAttribute("class", "mt-4 btn btn-default btn-lg btn-primary");
-            link.setAttribute("style", "width:273pt;");
+            dwnld_btn.appendChild(text);
+            dwnld_btn.setAttribute("id", "zipDownload");
+            dwnld_btn.setAttribute("href", "/media/" + data.response.urlDownload);
+            dwnld_btn.setAttribute("download", "Bioimpedancia - Archivos reparados");
+            dwnld_btn.setAttribute("class", "mt-4 btn btn-default btn-lg btn-primary");
+            dwnld_btn.setAttribute("style", "width:273pt;");
 
-            document.getElementById("centerPage").appendChild(link);
-
-            console.log(data.response.graphData);
+            center_page.appendChild(dwnld_btn)
 
         }).on('filebatchuploadcomplete', function(event, data) {
             $("#data_file").fileinput('disable');
@@ -115,6 +155,72 @@
         });
     </script>
 
+    
 {% endblock jspage %}
 
 
+{% comment %} 
+
+    const option_btns = document.createElement('div');
+    option_btns.innerHTML =
+    `
+    <div class="row">
+        <a id="zipDownload" href="/media/${data.response.urlDownload}" download
+            class="mt-4 btn btn-default btn-lg btn-primary"> 
+            <span>Descargar</span>
+        </a>
+    </div>
+    `
+
+
+    <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
+    <script>
+    // IMPEDANCIA
+        var ctx = document.getElementById('impedancia_data');
+        Plotly.plot( ctx, [{
+            x: {{impedancia_data.x}},
+            y: {{impedancia_data.y}} 
+            }], 
+            {
+                margin: { t: 0 } 
+            }
+        );
+
+    // IMPEDANCIA LOG
+        var ctx = document.getElementById('impedancia_data_log');
+        Plotly.plot( ctx, [{
+            x: {{impedancia_data_log.x}},
+            y: {{impedancia_data_log.y}} 
+            }], 
+            {
+                margin: { t: 0 } 
+            }
+        );
+
+    // FASE
+        var ctx = document.getElementById('fase_data');
+        Plotly.plot( ctx, [{
+            x: {{fase_data.x}},
+            y: {{fase_data.y}} 
+            }], 
+            {
+                margin: { t: 0 } 
+            }
+        );
+
+    // COLE COLE
+        var ctx = document.getElementById('cole_cole_data');
+        Plotly.plot( ctx, [{
+            x: {{cole_cole_data.x}},
+            y: {{cole_cole_data.y}} 
+            }], 
+            {
+                margin: { t: 0 } 
+            }
+        );
+
+    </script>
+
+
+
+{% endcomment %}

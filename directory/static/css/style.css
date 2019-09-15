@@ -268,7 +268,7 @@ body:after {
 /* Navbar */
 .site-navbar {
   margin-bottom: 0px;
-  z-index: 1999;
+  z-index: 1000;
   position: absolute;
   top: 0;
   width: 100%;
@@ -2117,6 +2117,13 @@ figure figcaption {
   box-shadow: 0 0 19px 3px rgba(0, 0, 0, 0.3);
 }
 
+.form-group > label.lbl-simul {
+  width: 140px;
+}
+
+.form-group > label.lbl-simul ~ select {
+  width: 100px;
+}
 /* .nav-container {
   padding: 0 3% 0 3%;
 }  */
