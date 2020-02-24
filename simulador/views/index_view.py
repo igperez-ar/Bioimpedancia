@@ -23,13 +23,13 @@ class IndexView(View):
       if (circuitoSelec != None):
          # Carga los valores selecionados
          valueCapacitor = float(request.GET.get('select_capacitor'))
-         valueResistencia_1 = int(request.GET.get('select_recistencia_1'))
-         valueResistencia_2 = int(request.GET.get('select_recistencia_2'))
+         valueResistencia_1 = int(request.GET.get('select_resistencia_1'))
+         valueResistencia_2 = int(request.GET.get('select_resistencia_2'))
       else:
          # Inicializa el simulador default
-         valueCapacitor = 10
-         valueResistencia_1 = 910
-         valueResistencia_2 = 910
+         valueCapacitor = 0.00000000012
+         valueResistencia_1 = 0
+         valueResistencia_2 = 0
          circuitoSelec = 'capacitor'
 
       # Switch de circuito
@@ -37,18 +37,18 @@ class IndexView(View):
       def switch(circuitoSelec ,valueCapacitor, valueResistencia_1, valueResistencia_2):
          sw = {
             'capacitor': Capacitor(valueCapacitor),
-            'recistencia': Resistencia(valueResistencia_1),
+            'resistencia': Resistencia(valueResistencia_1),
             'serie-rc': RCSerie(
-               valueResistencia_1,
-               valueCapacitor
+               valueCapacitor,
+               valueResistencia_1
                ),
             'paralelo-rc': RCParalelo(
-               valueResistencia_1,
-               valueCapacitor
+               valueCapacitor,
+               valueResistencia_1
                ),
             'serie-paralelo-rc': RCSerieParalelo(
-               valueResistencia_1,
                valueCapacitor,
+               valueResistencia_1,
                valueResistencia_2
                ),
          }

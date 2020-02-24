@@ -2058,6 +2058,10 @@ figure figcaption {
   font-size: 1.4rem;
   color: #000; }
 
+.card-body {
+  padding: 0;
+}
+
 /*PRELOADING------------ */
 #overlayer {
   width: 100%;
@@ -2123,6 +2127,22 @@ figure figcaption {
 
 .form-group > label.lbl-simul ~ select {
   width: 100px;
+}
+
+a {
+  color: grey;
+}
+
+#contact-section > div > div.row.text-center.justify-content-center > div {
+  box-shadow: 5px 5px 5px 1px rgba(0,0,0,0.05);
+  padding: 15px 0px 0px 0px;
+  background-color: white;
+  border-radius: 10px;
+  margin: 0px 10px 0px 10px;
+}
+
+div.team-member > div.p-3 > span.position {
+  color: rgba(105,105,105,0.6);
 }
 /* .nav-container {
   padding: 0 3% 0 3%;

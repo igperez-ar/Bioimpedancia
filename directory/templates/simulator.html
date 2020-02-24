@@ -21,10 +21,10 @@
 
                   <div class="row">
                      <div class="form-group col-4 text-left" id="circuitos">
-                        <input type="radio" name="circuito" id="capacitor" value="capacitor" checked> Capacitor<br>
-                        <input type="radio" name="circuito" id="recistencia" value="recistencia"> Recistencia<br>
-                        <input type="radio" name="circuito" id="serie-rc" value="serie-rc"> Serie RC<br>
-                        <input type="radio" name="circuito" id="paralelo-rc" value="paralelo-rc"> Paralelo RC<br>
+                        <input type="radio" name="circuito" id="capacitor"         value="capacitor" checked> Capacitor<br>
+                        <input type="radio" name="circuito" id="resistencia"       value="resistencia"> Resistencia<br>
+                        <input type="radio" name="circuito" id="serie-rc"          value="serie-rc"> Serie RC<br>
+                        <input type="radio" name="circuito" id="paralelo-rc"       value="paralelo-rc"> Paralelo RC<br>
                         <input type="radio" name="circuito" id="serie-paralelo-rc" value="serie-paralelo-rc"> Serie | Paralelo RC<br>
                      </div>
                      <div class="form-group col-5 text-left align-self-center">
@@ -40,9 +40,9 @@
                            </select>
                         </div> 
                         
-                        <div class="form-group" id="seccion_recistencia_1">
+                        <div class="form-group" id="seccion_resistencia_1">
                            <label class="lbl-simul" for="label_R1"><b>Resistencia N°1 </b></label>
-                           <select id="select_recistencia_1" name="select_recistencia_1">
+                           <select id="select_resistencia_1" name="select_resistencia_1">
                               <option value="910">910 Ω</option>
                               <option value="1000">1 kΩ</option>
                               <option value="47000">47 kΩ</option>
@@ -51,9 +51,9 @@
                            </select>
                         </div>
 
-                        <div class="form-group" id="seccion_recistencia_2">
+                        <div class="form-group" id="seccion_resistencia_2">
                            <label class="lbl-simul" for="label_R2"><b>Resistencia N°2 </b></label>
-                           <select id="select_recistencia_2" name="select_recistencia_2">
+                           <select id="select_resistencia_2" name="select_resistencia_2">
                               <option value="910">910 Ω</option>
                               <option value="1000">1 kΩ</option>
                               <option value="47000">47 kΩ</option>
@@ -76,18 +76,16 @@
          <div class="row">
             <div class="col-lg-6 col-sm-12">
                <div class="card bg-light mb-3">
-                  <div class="card-header text-center">Impedance</div>
+                  <div class="card-header text-center">Módulo de la Impedancia</div>
                      <div class="card-body">
-                        {% comment %} <canvas id="impedancia_data"></canvas> {% endcomment %}
                         <div id="impedancia_data"></div>
                      </div>
                </div>
             </div>
             <div class="col-lg-6 col-sm-12">
                <div class="card bg-light mb-3">
-                  <div class="card-header text-center">Impedance Log</div>
+                  <div class="card-header text-center">Módulo de la Impedancia</div>
                      <div class="card-body">
-                        {% comment %} <canvas id="impedancia_data_log"></canvas> {% endcomment %}
                         <div id="impedancia_data_log"></div>
                      </div>
                   </div>
@@ -98,18 +96,16 @@
          <div class="row">
             <div class="col-lg-6 col-sm-12">
                <div class="card bg-light mb-3">
-                  <div class="card-header text-center">Phase</div>
+                  <div class="card-header text-center">Fase de la Impedancia</div>
                      <div class="card-body">
-                        {% comment %} <canvas id="fase_data"></canvas> {% endcomment %}
                         <div id="fase_data"></div>
                      </div>
                </div>
             </div>
             <div class="col-lg-6 col-sm-12">
                <div class="card bg-light mb-3">
-                  <div class="card-header text-center">Cole Cole</div>
+                  <div class="card-header text-center">Diagrama de Cole-Cole</div>
                      <div class="card-body">
-                        {% comment %} <canvas id="cole_cole_data"></canvas> {% endcomment %}
                         <div id="cole_cole_data"></div>
                      </div>
                   </div>
@@ -140,9 +136,8 @@
    <script>
       if (document.getElementById('capacitor').checked) {
           document.getElementById('seccion_capacitor').style.display = 'block';
-          document.getElementById('seccion_recistencia_1').style.display = 'none';
-          document.getElementById('seccion_recistencia_2').style.display = 'none';
-          console.log('capacitor')
+          document.getElementById('seccion_resistencia_1').style.display = 'none';
+          document.getElementById('seccion_resistencia_2').style.display = 'none';
       }
 
       document.getElementById('circuitos')
@@ -150,86 +145,246 @@
 
          if (e.target.value === 'capacitor') {
             document.getElementById('seccion_capacitor').style.display = 'block';
-            document.getElementById('seccion_recistencia_1').style.display = 'none';
-            document.getElementById('seccion_recistencia_2').style.display = 'none';
-            console.log('Capacitor')
+            document.getElementById('seccion_resistencia_1').style.display = 'none';
+            document.getElementById('seccion_resistencia_2').style.display = 'none';
          }
 
-         if (e.target.value === 'recistencia') {
-            document.getElementById('seccion_recistencia_1').style.display = 'block';
+         if (e.target.value === 'resistencia') {
             document.getElementById('seccion_capacitor').style.display = 'none';
-            document.getElementById('seccion_recistencia_2').style.display = 'none';
-            console.log('Recistencia')
+            document.getElementById('seccion_resistencia_1').style.display = 'block';
+            document.getElementById('seccion_resistencia_2').style.display = 'none';
          }
 
          if (e.target.value === 'serie-rc') {
             document.getElementById('seccion_capacitor').style.display = 'block';
-            document.getElementById('seccion_recistencia_1').style.display = 'block';
-            document.getElementById('seccion_recistencia_2').style.display = 'none';
-            console.log('Recistencia')
+            document.getElementById('seccion_resistencia_1').style.display = 'block';
+            document.getElementById('seccion_resistencia_2').style.display = 'none';
          }
 
          if (e.target.value === 'paralelo-rc') {
             document.getElementById('seccion_capacitor').style.display = 'block';
-            document.getElementById('seccion_recistencia_1').style.display = 'block';
-            document.getElementById('seccion_recistencia_2').style.display = 'none';
-            console.log('Recistencia')
+            document.getElementById('seccion_resistencia_1').style.display = 'block';
+            document.getElementById('seccion_resistencia_2').style.display = 'none';
          }
 
          if (e.target.value === 'serie-paralelo-rc') {
             document.getElementById('seccion_capacitor').style.display = 'block';
-            document.getElementById('seccion_recistencia_1').style.display = 'block';
-            document.getElementById('seccion_recistencia_2').style.display = 'block';
-            console.log('Recistencia')
+            document.getElementById('seccion_resistencia_1').style.display = 'block';
+            document.getElementById('seccion_resistencia_2').style.display = 'block';
          }
       })
    </script>
 
    <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
    <script>
+      var config = {
+         modeBarButtonsToRemove: [
+            'zoom2d',
+            'zoomIn2d',
+            'zoomOut2d',
+            'autoScale2d', 
+            'resetScale2d',
+            'pan2d'
+         ]
+      };
+
    // IMPEDANCIA
       var ctx = document.getElementById('impedancia_data');
-      Plotly.plot( ctx, [{
+      var trace = {
          x: {{impedancia_data.x}},
          y: {{impedancia_data.y}} 
-         }], 
-         {
-            margin: { t: 0 } 
+      };
+      var data = [trace];
+      var layout = {
+         margin: {t:20, r:30, b:70, l:80},
+         annotations:[
+            {
+               x:0.5,
+               y:-0.15,
+               font: {
+                  size: 18
+               },
+               showarrow:false,
+               text:"Frecuencia",
+               xref:"paper",
+               yref:"paper"
+            },
+            {
+               x:-0.2,
+               y:0.5,
+               font: {
+                  size: 18
+               },
+               showarrow:false,
+               text:"|Impedancia|",
+               textangle:-90,
+               xref:"paper",
+               yref:"paper"
+            }
+         ],
+         xaxis: {
+            autotick: false,
+            type: 'log',
+            ticks: 'outside',
+            tick0: 1,
+            dtick: 1,
+            ticklen: 5,
+         },
+         yaxis: {
+            autotick: true,
+            ticks: 'outside',
+            ticklen: 5,
          }
-      );
+      };
+
+      Plotly.plot(ctx, data, layout, config);
 
    // IMPEDANCIA LOG
       var ctx = document.getElementById('impedancia_data_log');
-      Plotly.plot( ctx, [{
+      var trace = {
          x: {{impedancia_data_log.x}},
-         y: {{impedancia_data_log.y}} 
-         }], 
-         {
-            margin: { t: 0 } 
+         y: {{impedancia_data_log.y}}  
+      };
+      var data = [trace];
+      var layout = {
+         margin: {t:20, r:30, b:70, l:80},
+         annotations:[
+            {
+               x:0.5,
+               y:-0.15,
+               font: {
+                  size: 18
+               },
+               showarrow:false,
+               text:"Log(Frecuencia)",
+               xref:"paper",
+               yref:"paper"
+            },
+            {
+               x:-0.2,
+               y:0.5,
+               font: {
+                  size: 18
+               },
+               showarrow:false,
+               text:"|Impedancia|",
+               textangle:-90,
+               xref:"paper",
+               yref:"paper"
+            }
+         ],
+         xaxis: {
+            autotick: true,
+            type: 'log',
+            ticks: 'outside',
+            tick0: 1,
+            dtick: 1,
+            ticklen: 5,
+         },
+         yaxis: {
+            autotick: true,
+            ticks: 'outside',
+            ticklen: 5,
          }
-      );
+      };
+
+      Plotly.plot(ctx, data, layout, config);
 
    // FASE
       var ctx = document.getElementById('fase_data');
-      Plotly.plot( ctx, [{
+      var trace = {
          x: {{fase_data.x}},
-         y: {{fase_data.y}} 
-         }], 
-         {
-            margin: { t: 0 } 
+         y: {{fase_data.y}}   
+      };
+      var data = [trace];
+      var layout = {
+         margin: {t:20, r:30, b:70, l:80},
+         annotations:[
+            {
+               x:0.5,
+               y:-0.15,
+               font: {
+                  size: 18
+               },
+               showarrow:false,
+               text:"Frecuencia",
+               xref:"paper",
+               yref:"paper"
+            },
+            {
+               x:-0.2,
+               y:0.5,
+               font: {
+                  size: 18
+               },
+               showarrow:false,
+               text:"Ángulo de Z",
+               textangle:-90,
+               xref:"paper",
+               yref:"paper"
+            }
+         ],
+         xaxis: {
+            autotick: true,
+            ticks: 'outside',
+            ticklen: 5,
+         },
+         yaxis: {
+            autotick: true,
+            ticks: 'outside',
+            ticklen: 5,
          }
-      );
+      };
+
+      Plotly.plot(ctx, data, layout, config);
 
    // COLE COLE
       var ctx = document.getElementById('cole_cole_data');
-      Plotly.plot( ctx, [{
+      var trace = {
          x: {{cole_cole_data.x}},
-         y: {{cole_cole_data.y}} 
-         }], 
-         {
-            margin: { t: 0 } 
+         y: {{cole_cole_data.y}}   
+      };
+      var data = [trace];
+      var layout = {
+         margin: {t:20, r:30, b:70, l:80},
+         annotations:[
+            {
+               x:0.5,
+               y:-0.15,
+               font: {
+                  size: 18
+               },
+               showarrow:false,
+               text:"Parte Real",
+               xref:"paper",
+               yref:"paper"
+            },
+            {
+               x:-0.2,
+               y:0.5,
+               font: {
+                  size: 18
+               },
+               showarrow:false,
+               text:"- Parte Imaginaria",
+               textangle:-90,
+               xref:"paper",
+               yref:"paper"
+            }
+         ],
+         xaxis: {
+            autotick: true,
+            ticks: 'outside',
+            ticklen: 5,
+         },
+         yaxis: {
+            autotick: true,
+            ticks: 'outside',
+            ticklen: 5,
          }
-      );
+      };
+
+      Plotly.plot(ctx, data, layout, config);
 
    </script>
 {% endblock jspage %}

@@ -29,7 +29,7 @@ class RCSerie(Circuito):
         self.r=r
         self.c=c
     def get_impedancias(self,spectrum):
-        return self.r-1j/(2*np.pi*spectrum*self.c);
+        return self.r-1j/(2*np.pi*spectrum*self.c)
         
 class RCParalelo(Circuito):
     def __init__(self,r,c):
@@ -45,5 +45,5 @@ class RCSerieParalelo(Circuito):
         self.c=c
         self.r1=r1
     def get_impedancias(self,spectrum):    
-         xc=-1j/(2*np.pi*spectrum*self.c);
+         xc=-1j/(2*np.pi*spectrum*self.c)
          return self.r1+((self.r*xc)/(self.r+xc))   
