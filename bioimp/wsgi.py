@@ -1,16 +1,12 @@
-"""
-WSGI config for bioimp project.
-
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/2.2/howto/deployment/wsgi/
-"""
 
 import os
+import sys
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bioimp.settings')
-
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bioimp.settings.prod')
+sys.path.append('/home/mgel/Bioimpedancia')
+sys.path.append('/home/mgel/Bioimpedancia/bioimp')
 application = get_wsgi_application()
+#SECRET_KEY = os.environ.get("SECRET_KEY", "some value if your key is not in the environment")
+
