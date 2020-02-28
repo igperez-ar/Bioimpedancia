@@ -2147,3 +2147,32 @@ div.team-member > div.p-3 > span.position {
 /* .nav-container {
   padding: 0 3% 0 3%;
 }  */
+
+div.file-thumbnail-footer > div.file-footer-caption {
+  width: fit-content;
+  text-align: left;
+  padding-left: 40px;
+}
+
+div.file-thumbnail-footer > div.file-footer-caption > div.file-caption-info {
+  width: fit-content;
+  max-width: 160pt;
+  display: inline-flex;
+  overflow: hidden;
+  height: 30px;
+  margin-left: 0px;
+  text-overflow: ellipsis;
+}
+
+div.file-thumbnail-footer > div.file-footer-caption > div.file-size-info {
+  display: contents;
+}
+
+div.file-thumbnail-footer > div.file-actions > div {
+  margin: -30px 30px 0px 0px;
+}
+
+div.file-thumbnail-footer > div.file-upload-indicator {
+  margin: 0px;
+  margin-top: -28px;
+}

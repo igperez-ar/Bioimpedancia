@@ -247,9 +247,9 @@
     height: 2px;
 }
 
-div.file-thumbnail-footer > div.file-footer-caption > div.file-size-info > samp {
+/* div.file-thumbnail-footer > div.file-footer-caption > div.file-size-info > samp {
     margin: 0 0 0 150px;
-}
+} */
 
 /* .krajee-default .file-preview-other-frame {
     display: flex;
