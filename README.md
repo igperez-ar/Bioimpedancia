@@ -100,10 +100,11 @@ The project uses various static files including:
 
 ## License
 
-This project uses various components with different licenses:
+This project is licensed under the Apache License 2.0 - see the LICENSE file for details.
+
+The project uses various components with different licenses:
 - Font Awesome: SIL OFL 1.1
 - Bootstrap File Input: MIT License
-- Project Code: License information pending
 
 ## Contributing
 
